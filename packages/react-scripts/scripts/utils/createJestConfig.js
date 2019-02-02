@@ -14,15 +14,17 @@ const paths = require('../../config/paths');
 module.exports = (resolve, rootDir, isEjecting) => {
   // Use this instead of `paths.testsSetup` to avoid putting
   // an absolute filename into configuration after ejecting.
-  const setupTestsMatches = paths.testsSetup.match(/src[/\\]setupTests\.(.+)/);
+  const setupTestsMatches = paths.testsSetup.match(
+    /client[/\\]setupTests\.(.+)/
+  );
   const setupTestsFileExtension =
     (setupTestsMatches && setupTestsMatches[1]) || 'js';
   const setupTestsFile = fs.existsSync(paths.testsSetup)
-    ? `<rootDir>/src/setupTests.${setupTestsFileExtension}`
+    ? `<rootDir>/client/setupTests.${setupTestsFileExtension}`
     : undefined;
 
   const config = {
-    collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
+    collectCoverageFrom: ['client/**/*.{js,jsx,ts,tsx}', '!client/**/*.d.ts'],
 
     // TODO: this breaks Yarn PnP on eject.
     // But we can't simply emit this because it'll be an absolute path.
@@ -39,8 +41,8 @@ module.exports = (resolve, rootDir, isEjecting) => {
 
     setupTestFrameworkScriptFile: setupTestsFile,
     testMatch: [
-      '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',
-      '<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}',
+      '<rootDir>/client/**/__tests__/**/*.{js,jsx,ts,tsx}',
+      '<rootDir>/client/**/?(*.)(spec|test).{js,jsx,ts,tsx}',
     ],
     testEnvironment: 'jsdom',
     testURL: 'http://localhost',
@@ -99,7 +101,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
               chalk.bold('setupTestFrameworkScriptFile') +
               ' in your package.json.\n\n' +
               'Remove it from Jest configuration, and put the initialization code in ' +
-              chalk.bold('src/setupTests.js') +
+              chalk.bold('client/setupTests.js') +
               '.\nThis file will be loaded automatically.\n'
           )
         );
