@@ -1,6 +1,6 @@
 {
   "name": "@bionikspoon/react-scripts",
-  "version": "0.0.1",
+  "version": "0.0.1-alpha.1",
   "description": "Configuration and scripts for Create React App.",
   "repository": "https://github.com/bionikspoon/create-react-app",
   "license": "MIT",
@@ -88,6 +88,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "author": "Manu Phatak <bionikspoon@gmail.com>",
-  "private": false
+  "author": "Manu Phatak <bionikspoon@gmail.com>"
 }
