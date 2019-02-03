@@ -1,6 +1,6 @@
 {
   "name": "@bionikspoon/react-scripts",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "description": "Configuration and scripts for Create React App.",
   "repository": "https://github.com/bionikspoon/create-react-app",
   "license": "MIT",
