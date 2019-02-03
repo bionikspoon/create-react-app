@@ -57,7 +57,7 @@ if (module.hot && typeof module.hot.dispose === 'function') {
   });
 }
 
-var port = process.env.CLIENT_PORT || 4000;
+var port = process.env.CLIENT_PORT || 3000;
 
 // Connect to WebpackDevServer via a socket.
 var connection = new SockJS(
