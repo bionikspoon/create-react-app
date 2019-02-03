@@ -57,12 +57,14 @@ if (module.hot && typeof module.hot.dispose === 'function') {
   });
 }
 
+var port = process.env.CLIENT_PORT || 4000;
+
 // Connect to WebpackDevServer via a socket.
 var connection = new SockJS(
   url.format({
     protocol: window.location.protocol,
     hostname: window.location.hostname,
-    port: window.location.port,
+    port: port,
     // Hardcoded in WebpackDevServer
     pathname: '/sockjs-node',
   })
