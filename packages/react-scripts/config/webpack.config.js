@@ -34,6 +34,9 @@ const typescriptFormatter = require('@bionikspoon/react-dev-utils/typescriptForm
 // @remove-on-eject-begin
 const getCacheIdentifier = require('@bionikspoon/react-dev-utils/getCacheIdentifier');
 // @remove-on-eject-end
+const {
+  prepareUrls,
+} = require('@bionikspoon/react-dev-utils/WebpackDevServerUtils');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -49,6 +52,11 @@ const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 
+const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+const host = process.env.HOST || '0.0.0.0';
+const port = parseInt(process.env.PORT, 10) || 3000;
+const urls = prepareUrls(protocol, host, port);
+
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
@@ -60,7 +68,7 @@ module.exports = function(webpackEnv) {
   // In development, we always serve from the root. This makes config easier.
   const publicPath = isEnvProduction
     ? paths.servedPath
-    : isEnvDevelopment && '/';
+    : isEnvDevelopment && urls.localUrlForBrowser;
   // Some apps do not use client-side routing with pushState.
   // For these, "homepage" can be set to "." to enable relative asset paths.
   const shouldUseRelativeAssetPaths = publicPath === './';
@@ -70,7 +78,7 @@ module.exports = function(webpackEnv) {
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
   const publicUrl = isEnvProduction
     ? publicPath.slice(0, -1)
-    : isEnvDevelopment && '';
+    : isEnvDevelopment && publicPath.slice(0, -1);
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(publicUrl);
 
