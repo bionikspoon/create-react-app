@@ -1,6 +1,6 @@
 {
   "name": "@bionikspoon/react-dev-utils",
-  "version": "0.0.1-alpha.9",
+  "version": "0.0.1-alpha.11",
   "description": "Webpack utilities used by Create React App",
   "repository": "bionikspoon/create-react-app",
   "license": "MIT",
